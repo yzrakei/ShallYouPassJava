@@ -1,2 +1,2 @@
-# ShallYouPassJava
+# SHALL YOU PASS JAVA?
 CS122 Final Project
