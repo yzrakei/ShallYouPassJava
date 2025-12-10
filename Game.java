@@ -1,9 +1,11 @@
 import javax.swing.JFrame;
 import java.awt.Color;
 
+//run main game here
 public class Game {
   public static void main(String[] args) {
-    //run main game here
+
+    //window setup
     JFrame window = new JFrame();
     window.setSize(800, 720);
     window.setResizable(false);
@@ -14,5 +16,6 @@ public class Game {
     //window.pack(); --> when adding panels
 
     window.setVisible(true);
+
   }
 }
