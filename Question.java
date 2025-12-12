@@ -1,10 +1,10 @@
 
-public abstract class Questions {
+public abstract class Question {
     protected int difficultyLevel;
     protected String questionText;
     protected String correctAnswer;
 
-    public Questions(String questionText, String correctAnswer, int difficultyLevel) {
+    public Question(String questionText, String correctAnswer, int difficultyLevel) {
         this.questionText = questionText;
         this.correctAnswer = correctAnswer;
         this.difficultyLevel = difficultyLevel;

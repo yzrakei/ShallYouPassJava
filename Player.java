@@ -10,7 +10,6 @@ public class Player {
     this.maxHealth = 3;
     this.selectedDifficulty = 0; 
   }
-
   
   public int getHealth() {
     return health;
@@ -19,14 +18,14 @@ public class Player {
   public void takeDamage(int damage) {
     this.health -= damage;
     if (this.health <= 0) {
-      System.out.println("Game Over! " + playerName + " shall NOT pass Java!");
+      System.out.println(playerName + " shall NOT pass Java!");
       this.health = 0;
     }
   }
   public void increaseMaxHealth(int amount) {
     this.maxHealth += amount;
     this.health = this.maxHealth;
-    System.out.println("Max health increased! Current max health: " + this.maxHealth);
+    System.out.println("Max health increased!\nCurrent max health: " + this.maxHealth);
     }
 
   
