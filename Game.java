@@ -83,6 +83,14 @@ public class Game {
     
     System.out.println("You awake in the depths of a dark dungeon...");
     System.out.println("The only visible is the dim light emitted from a lone chromebook on a pedestal.\n");
+    System.out.println("      __...--~~~~~-._   _.-~~~~~--...__\n" + //
+            "    //               `V'               \\ \n" + //
+            "   //                 |                 \\ \n" + //
+            "  //__...--~~~~~~-._  |  _.-~~~~~~--...__\\ \n" + //
+            " //__.....----~~~~._\\ | /_.~~~~----.....__\\\\\n" + //
+            "====================\\|//====================\n" + //
+            "                    `---`\n" );
+
     
     System.out.println("You boot up the strange apparatus to a threatening red glow and a sinister voice echoes through the screen:\n");
     
