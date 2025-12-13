@@ -112,7 +112,12 @@ public class Game {
   
     System.out.println("- Enter your player name: -");
     String playerName = scanner.nextLine();
-    this.player = new Player(playerName);
+    if(playerName.isEmpty()){
+      playerName = "Gerard";
+    }
+    else{
+      this.player = new Player(playerName);
+    }
 
     System.out.println("Prepare yourself "+ playerName + "... Your journey begins now...\n\n═══════════════════════════════════════════════════════════════════════════\n");
   }
@@ -183,7 +188,7 @@ public class Game {
   private void bossFight(){
     Boss boss = dungeon.getFinalBoss();
 
-    System.out.println("You have reached the final room and face the Dungeon Boss!");
+    System.out.println("You have reached the final room...\nYou step into the murky fog.");
   
     while(player.isAlive() && !boss.isDefeated()){
       
