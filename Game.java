@@ -141,7 +141,7 @@ public class Game {
     player.setSelectedDifficulty(difficulty);
 
     this.dungeon = new Dungeon(difficulty, Total_Rooms);
-    System.out.println("Welcome, " + player.getPlayerName() + "! Your journey begins now.");
+    System.out.println("Welcome, " + player.getPlayerName() + "!");
   }
 
   private void processRoom(){
@@ -208,10 +208,10 @@ public class Game {
       String playerAnswer = scanner.nextLine();
 
       if (currentQuestion.checkAnswer(playerAnswer)) {
-        System.out.println("Correct! You deal damage to the Boss.");
+        System.out.println("Correct! You dealt damage to the Boss.");
         boss.takeDamage(1);
       } else {
-        System.out.println("Incorrect! The Boss attacks you.");
+        System.out.println("Incorrect! " + boss.getAttackLine());
         boss.attacks(player);
       }
     }

@@ -1,8 +1,12 @@
+import java.util.Random;
+
 public class Boss{
+    Random random = new Random();
     private String name;
     private int health;
     private final int maxHealth;
-    private final String[] attackLines;
+    private String[] attackLines;
+    private String[] takeDamageLines;
 
     public Boss(){
 
@@ -16,15 +20,21 @@ public class Boss{
             "The EVIL COMPUTER corrupts your files!",
             "The EVIL COMPUTER sends a missile in O(1) time!"
         };
+        takeDamageLines = new String[]{
+            "The EVIL COMPUTER loses it's base case! ",
+            "The EVIL COMPUTER encounters a logic error! ",
+            "The EVIL COMPUTER's screen cracks! ",
+            "The EVIL COMPUTER malfunctions! ",
+        };
     }
 
 
     public void takeDamage(int amount) {
         this.health -= amount;
-        System.out.println("Ouch! That hurts! My health is now: " + this.health);
+        System.out.println(takeDamageLines[random.nextInt(takeDamageLines.length)] + name + " Health: " + this.health);
 
         if (this.health <= 0) {
-            System.out.println("No! I have been defeated! You may pass java... this time...");
+            System.out.println("You may pass java... this time...");
             this.health = 0;
         }
     }
@@ -34,7 +44,7 @@ public class Boss{
     }
 
     public void attacks(Player player) {
-        System.out.println("The " + name + " attacks you!");
+        System.out.println(name + " attacks you!");
         player.takeDamage(1);
     }
 
@@ -48,5 +58,9 @@ public class Boss{
 
     public int getMaxHealth() {
         return maxHealth;
+    }
+
+    public String getAttackLine() {
+        return attackLines[random.nextInt(attackLines.length)];
     }
 }
