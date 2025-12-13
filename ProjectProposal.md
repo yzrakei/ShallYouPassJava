@@ -75,28 +75,29 @@ more time on questions
 
 ### Phase 1 (Now)
 
+-   Reach 100 users
 -   MVP with core features (simple gameplay, story, interactions)
--   Free to play
+-   Revenue: Free to play
 
 ### Phase 2 (6 months)
 
 -   Reach 1,000 users
--   Add GUI enhancements (art, effects)
+-   Add GUI enhancements
 -   Integrate ads
+-   Revenue: $10 per ad
 
 ### Phase 3 (12 months)
 
 -   Reach 10,000 users
 -   Add quality-of-life features + DLC
 -   Expand content
+-   Revenue: $10 per ad, $5 dollar DLC packs
 
 ### Technical progression
 
-(Describe scalability requirements)
-
-### Revenue model per phase
-
-(How revenue scales with user growth)
+Phase 1: Improve Question systems, HTML Frontend or Java Swing UI
+Phase 2: Implement more variety in gameplay using Random or AI generated questions
+Phase 3: Save System, Mobile edition
 
 ## 11. SOURCES & REFERENCES
 
