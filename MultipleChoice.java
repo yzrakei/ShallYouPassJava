@@ -1,5 +1,5 @@
 
-public class MultipleChoice extends Questions {
+public class MultipleChoice extends Question {
     private String[] options;
 
     public MultipleChoice(String questionText, String correctAnswer, int difficultyLevel, String[] options) {
@@ -35,3 +35,5 @@ public class MultipleChoice extends Questions {
     }
     
 }
+
+// change to a quiz class that generates a stage and multiplechoice is a method
