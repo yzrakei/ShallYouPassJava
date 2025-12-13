@@ -112,12 +112,10 @@ public class Game {
   
     System.out.println("- Enter your player name: -");
     String playerName = scanner.nextLine();
-    if(playerName.isEmpty()){
+    if(playerName == null || playerName.trim().isEmpty()){
       playerName = "Gerard";
     }
-    else{
-      this.player = new Player(playerName);
-    }
+    this.player = new Player(playerName);
 
     System.out.println("Prepare yourself "+ playerName + "... Your journey begins now...\n\n═══════════════════════════════════════════════════════════════════════════\n");
   }
@@ -145,7 +143,7 @@ public class Game {
     player.setSelectedDifficulty(difficulty);
 
     this.dungeon = new Dungeon(difficulty, Total_Rooms);
-    System.out.println("Welcome, " + player.getPlayerName() + "!");
+    System.out.println(player.getPlayerName() + " has entered the room...\n\n");
   }
 
   private void processRoom(){
@@ -188,18 +186,18 @@ public class Game {
   private void bossFight(){
     Boss boss = dungeon.getFinalBoss();
 
-    System.out.println("You have reached the final room...\nYou step into the murky fog.");
+    System.out.println("You have reached the final room...\nYou step into the murky fog...\n");
   
     while(player.isAlive() && !boss.isDefeated()){
       
       Questions currentQuestion = dungeon.getBossQuestion();
 
       if (currentQuestion == null) {
-        System.out.println("No more boss questions available.");
+        System.out.println("No more boss questions available.\n");
         break;
       }
       
-      System.out.println("Boss Question: " + currentQuestion.getQuestionText());
+      System.out.println("\nBoss Question: " + currentQuestion.getQuestionText());
 
       if (currentQuestion instanceof MultipleChoice) {
         MultipleChoice mcQuestion = (MultipleChoice) currentQuestion;
@@ -223,7 +221,7 @@ public class Game {
     if (boss.isDefeated()) {
       System.out.println("\n══════════════════════════════════════════════\n- GREAT ENEMY VANQUISHED! -\n══════════════════════════════════════════════\nThree more pillars remain...\n\nWhat will your future await?");
     } else {
-      System.out.println("You have been defeated by the Dungeon Boss.");
+      System.out.println("You have been defeated by " + boss.getName() + "...\n");
     }
     gameState = STATE_GAME_OVER;
 
