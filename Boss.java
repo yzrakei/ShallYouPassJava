@@ -10,21 +10,21 @@ public class Boss{
 
     public Boss(){
 
-        this.name= "EVIL COMPUTER";
+        this.name = "The Encapsulator, Lord of POJOs";
         this.maxHealth = 3;
         this.health = maxHealth;
         attackLines = new String[]{
-            "The EVIL COMPUTER takes away your ;",
-            "The EVIL COMPUTER menacingly unleashes a stack overflow!",
-            "The EVIL COMPUTER won't let you install JUnit testing!",
-            "The EVIL COMPUTER corrupts your files!",
-            "The EVIL COMPUTER sends a missile in O(1) time!"
+            name + " takes away your ;",
+            name + " menacingly gets a String!",
+            name + " won't let you install JUnit testing!",
+            name + " sets corruption to your fields!",
+            name + " retrieves an attack in O(1) time!"
         };
         takeDamageLines = new String[]{
-            "The EVIL COMPUTER loses it's base case! ",
-            "The EVIL COMPUTER encounters a logic error! ",
-            "The EVIL COMPUTER's screen cracks! ",
-            "The EVIL COMPUTER malfunctions! ",
+            "loses it's constructor! ",
+            "falls from a syntax error! ",
+            "'s  parameters get cut!",
+            "malfunctions! ",
         };
     }
 

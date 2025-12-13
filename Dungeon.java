@@ -43,10 +43,19 @@ public class Dungeon {
         //-----Easy Difficuly Questions-----
         easyQuestions.add(new MultipleChoice("What is the keyword to define a class in Java?", "class", 1, new String[]{"class", "def", "struct", "object"}));
         easyQuestions.add(new MultipleChoice("What data type is used to represent true/false values in Java?", "boolean", 1, new String[]{"int", "String", "boolean", "char"}));
+        easyQuestions.add(new MultipleChoice("Which is the correct declaration of an integer variable?", "int x = 10;", 1, new String[]{"int x = 10;", "x = 2", "5 = int", "int y = 5"}));
+        easyQuestions.add(new MultipleChoice("Which is the correct declaration of a String variable?", "String s = \"Hello\";", 1, new String[]{"string s = \"Hello\"", "s = \"Hello\"", "String s = \"Hello\";", "\"Hello\" = str"}));
+        easyQuestions.add(new MultipleChoice("Which is a valid conditional statement?", "", 1, new String[]{"", "", "", ""}));
+        easyQuestions.add(new MultipleChoice("", "", 1, new String[]{"", "", "", ""}));
+        easyQuestions.add(new MultipleChoice("", "", 1, new String[]{"", "", "", ""}));
+
 
         //-----Medium Difficulty Questions-----
         mediumQuestions.add(new MultipleChoice("Which of the following is NOT a Java access modifier?", "protectedish", 2, new String[]{"public", "private", "protectedish", "protected"}));
         mediumQuestions.add(new MultipleChoice("What is the size of an int data type in Java?", "4 bytes", 2, new String[]{"2 bytes", "4 bytes", "8 bytes", "16 bytes"}));
+        mediumQuestions.add(new MultipleChoice("Which of these is NOT a valid loop in Java?", "repeat-until loop", 2, new String[]{"for loop", "while loop", "do-while loop", "repeat-until loop"}));
+        mediumQuestions.add(new MultipleChoice("", "", 2, new String[]{"", "", "", ""}));
+        mediumQuestions.add(new MultipleChoice("", "", 2, new String[]{"", "", "", ""}));
 
         //-----Hard Difficulty Questions-----
         hardQuestions.add(new MultipleChoice("What kind of loop is guaranteed to execute at least once?", "do-while loop", 3, new String[]{"for loop", "while loop", "do-while loop", "enhanced for loop"}));

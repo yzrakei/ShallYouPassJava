@@ -114,7 +114,7 @@ public class Game {
     String playerName = scanner.nextLine();
     this.player = new Player(playerName);
 
-    System.out.println("Prepare yourself "+ playerName + "... Your journey begins now...\n\n\n═══════════════════════════════════════════════════════════════════════════\n");
+    System.out.println("Prepare yourself "+ playerName + "... Your journey begins now...\n\n═══════════════════════════════════════════════════════════════════════════\n");
   }
    
     
@@ -216,7 +216,7 @@ public class Game {
     }
 
     if (boss.isDefeated()) {
-      System.out.println("\n══════════════════════════════════════════════\n- GREAT ENEMY VANQUISHED! -\n══════════════════════════════════════════════\nYou may now escape the dungeon.");
+      System.out.println("\n══════════════════════════════════════════════\n- GREAT ENEMY VANQUISHED! -\n══════════════════════════════════════════════\nThree more pillars remain...\n\nWhat will your future await?");
     } else {
       System.out.println("You have been defeated by the Dungeon Boss.");
     }
