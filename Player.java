@@ -19,7 +19,7 @@ public class Player {
   public void takeDamage(int damage) {
     this.health -= damage;
     if (this.health <= 0) {
-      System.out.println("Game Over! " + playerName + " shall NOT pass Java!");
+      System.out.println("YOU PERISHED! " + playerName + " shall NOT pass Java!");
       this.health = 0;
     }
   }

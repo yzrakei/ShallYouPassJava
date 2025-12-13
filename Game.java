@@ -42,7 +42,7 @@ public class Game {
 
       case STATE_IN_DUNGEON:
       if (!player.isAlive()) {
-          System.out.println("You have perished in the dungeon.");
+          System.out.println("THE SETUP WIZARD: \"Another vanguard fallen...\"");
           gameState = STATE_GAME_OVER;
         }
         else if (currentRoom < Total_Rooms) {
@@ -99,25 +99,24 @@ public class Game {
     System.out.println("The computer suddenly turns into a bright blue.\nA new voice emerges from the speakers:\n");
 
     System.out.println("\"Sorry I am late, brave wanderer. I am the Setup Wizard, and you must be the new VSCode Vanguard...\"\n");
-    System.out.println("\"You must make it to the end of this dungeon, and take Evil Computer down once and for all. Here's what you have to do:\"\n");
+    System.out.println("\"You must make it to the end of this dungeon, and take Evil Computer down once and for all.\nHere's what you have to do:\"\n");
     
-    System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━ THE RULES ━━━━━━━━━━━━━━━━━━━━━━━━━");
-    System.out.println("  • Navigate through 10 rooms filled with challenges");
-    System.out.println("  • Answer questions correctly to proceed");
-    System.out.println("  • Wrong answers will cost you health");
-    System.out.println("  • Survive and escape to claim your Chromebook!");
-    System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
+    System.out.println("═════════════════════ THE RULES ═════════════════════");
+    System.out.println(" 1. Navigate through 10 rooms filled with challenges");
+    System.out.println(" 2. Answer questions correctly to proceed");
+    System.out.println(" 3. Wrong answers will cost you health");
+    System.out.println(" 4. Survive and escape to claim your Chromebook!");
+    System.out.println("═════════════════════════════════════════════════════\n");
 
     System.out.println("Before we begin, what shall we call you wanderer? ");
   
-    System.out.println("Enter your player name: ");
+    System.out.println("- Enter your player name: -");
     String playerName = scanner.nextLine();
     this.player = new Player(playerName);
 
-    System.out.println("Prepare yourself... Your journey begins now...\n");
+    System.out.println("Prepare yourself "+ playerName + "... Your journey begins now...\n\n\n═══════════════════════════════════════════════════════════════════════════\n");
   }
    
-
     
   private void handleDifficultySelection(){
 
@@ -217,7 +216,7 @@ public class Game {
     }
 
     if (boss.isDefeated()) {
-      System.out.println("You have defeated the Dungeon Boss! You may now escape the dungeon.");
+      System.out.println("\n══════════════════════════════════════════════\n- GREAT ENEMY VANQUISHED! -\n══════════════════════════════════════════════\nYou may now escape the dungeon.");
     } else {
       System.out.println("You have been defeated by the Dungeon Boss.");
     }
