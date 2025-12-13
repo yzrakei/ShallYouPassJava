@@ -82,19 +82,24 @@ public class Game {
     System.out.println("╚════════════════════════════════════════════════════════════════════════╝\n");
     
     System.out.println("You awake in the depths of a dark dungeon...");
-    System.out.println("The only thing emitting any light is a lone chromebook on a pedestal.\n");
+    System.out.println("The only visible is the dim light emitted from a lone chromebook on a pedestal.\n");
     
-    System.out.println("You boot up the chromebook and a mysterious voice echoes through the screen:\n");
+    System.out.println("You boot up the strange apparatus to a threatening red glow and a sinister voice echoes through the screen:\n");
     
     System.out.println("═══════════════════════════════════════════════════════════════════════════");
-    System.out.println("  \"Welcome to the Dungeon of Java!\"");
+  System.out.println("  \"WELCOME TO THE DUNGEON OF JAVA!\"");
     System.out.println("═══════════════════════════════════════════════════════════════════════════\n");
     
-    System.out.println("\"I'm Evil Computer. Don't worry about the 'evil' part—my designers hate me.\"");
-    System.out.println("\"One thing about me is that I LOVE Java.\"\n");
+    System.out.println("\"A new contender has entered my rightful domain...tsk. Thou shall know me, for I am Evil Computer.\"");
+    System.out.println("\"You shall feel the wrath, of a thousand years of my passion for Java!\"\n");
     
-    System.out.println("\"It has come to my attention that you wish to succeed in Java.\"");
-    System.out.println("\"To do so, you must prove your knowledge by navigating through my dungeon.\"\n");
+    System.out.println("\"It has come to my attention that you wish to exceed my expertisein Java.\"");
+    System.out.println("\"I would like to see you try-\"\n");
+
+    System.out.println("The computer suddenly turns into a bright blue.\nA new voice emerges from the speakers:\n");
+
+    System.out.println("\"Sorry I am late, brave wanderer. I am the Setup Wizard, and you must be the new VSCode Vanguard...\"\n");
+    System.out.println("\"You must make it to the end of this dungeon, and take Evil Computer down once and for all. Here's what you have to do:\"\n");
     
     System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━ THE RULES ━━━━━━━━━━━━━━━━━━━━━━━━━");
     System.out.println("  • Navigate through 10 rooms filled with challenges");
@@ -102,14 +107,14 @@ public class Game {
     System.out.println("  • Wrong answers will cost you health");
     System.out.println("  • Survive and escape to claim your Chromebook!");
     System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
-    
-    System.out.println("Prepare yourself... Your journey begins NOW.\n");
 
-    System.out.println("Before we begin, what is your name? ");
+    System.out.println("Before we begin, what shall we call you wanderer? ");
   
-    System.out.print("Enter your player name: ");
+    System.out.println("Enter your player name: ");
     String playerName = scanner.nextLine();
     this.player = new Player(playerName);
+
+    System.out.println("Prepare yourself... Your journey begins now...\n");
   }
    
 

@@ -2,13 +2,20 @@ public class Boss{
     private String name;
     private int health;
     private final int maxHealth;
-
+    private final String[] attackLines;
 
     public Boss(){
 
         this.name= "EVIL COMPUTER";
         this.maxHealth = 3;
         this.health = maxHealth;
+        attackLines = new String[]{
+            "The EVIL COMPUTER takes away your ;",
+            "The EVIL COMPUTER menacingly unleashes a stack overflow!",
+            "The EVIL COMPUTER won't let you install JUnit testing!",
+            "The EVIL COMPUTER corrupts your files!",
+            "The EVIL COMPUTER sends a missile in O(1) time!"
+        };
     }
 
 
