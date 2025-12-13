@@ -80,6 +80,10 @@ public class Game {
         break;
     }
   }
+
+  private void generateQuestions() {
+    //load questions from a file or database
+  }
   
   private void processRoom() {
     System.out.println("Entered room " + (currentRoom + 1));
@@ -126,6 +130,7 @@ public class Game {
       gameState = STATE_IN_DUNGEON;
     }
   } 
+  
 
   public static void main(String[] args) {
     Game game = new Game();
