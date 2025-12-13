@@ -1,7 +1,7 @@
 # SHALL YOU PASS JAVA?
 
 **Team Members:** Rachel Lo, Jordan Lee, Christian Dell'Edera
-**Category:** Educational/Entertainment
+\n**Category:** Educational/Entertainment
 
 ## 1. PROBLEM STATEMENT
 
@@ -95,9 +95,9 @@ more time on questions
 
 ### Technical progression
 
-Phase 1: Improve Question systems, HTML Frontend or Java Swing UI
-Phase 2: Implement more variety in gameplay using Random or AI generated questions
-Phase 3: Save System, Mobile edition
+-   Phase 1: Improve Question systems, HTML Frontend or Java Swing UI
+-   Phase 2: Implement more variety in gameplay using Random or AI generated questions
+-   Phase 3: Save System, Mobile edition
 
 ## 11. SOURCES & REFERENCES
 
