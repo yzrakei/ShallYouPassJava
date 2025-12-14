@@ -1,5 +1,3 @@
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
 
 public class Enemy{
@@ -8,27 +6,28 @@ public class Enemy{
     private int health;
     private int difficulty;
     private String enemyName;
-    private String type;
-    private Map<String, Integer> enemyTypes = new HashMap<>();{{
-        setEnemyTypes();
-    }};
+    private String[] easyEnemies = {"Rotten Goblin", "Mangled Skeleton", "Decayed Rat", "Rancid Larvae", "Putrid Slime"};
+    private String[] mediumEnemies = {"Large Mangled Skeleton", "Giant Decayed Rat", "Undead Archer", "Undead Knight"};
+    private String[] hardEnemies = {"Rotten Orc", "Cursed Undead Knight", "Cursed Undead Archer", "Giant Rancid Larvae"};
 
-    public Enemy(){
-        this.type = (String)enemyTypes.keySet().toArray()[random.nextInt(enemyTypes.size())];
-        this.difficulty = enemyTypes.get(type);
-        this.enemyName = type;
+    public Enemy(int difficulty){
+        this.difficulty = difficulty;
         switch(difficulty) {
             case 1:
-                this.health = 3;
+                this.health = 1;
+                this.enemyName = easyEnemies[random.nextInt(easyEnemies.length)];
                 break;
             case 2:
-                this.health = 5;
+                this.health = 3;
+                this.enemyName = mediumEnemies[random.nextInt(mediumEnemies.length)];
                 break;
             case 3:
-                this.health = 10;
+                this.health = 5;
+                this.enemyName = hardEnemies[random.nextInt(hardEnemies.length)];
                 break;
             default:
-                this.health = 3;
+                this.health = 1;
+                this.enemyName = easyEnemies[random.nextInt(easyEnemies.length)];
                 break;
         }
     }
@@ -57,19 +56,7 @@ public class Enemy{
         return this.health > 0;
     }
 
-    private void setEnemyTypes(){
-        enemyTypes.put("Rotten Goblin", 1);
-        enemyTypes.put("Mangled Skeleton", 1);
-        enemyTypes.put("Decayed Rat", 1);
-        enemyTypes.put("Rancid Larvae", 1);
-        enemyTypes.put("Putrid Slime", 1);
-        enemyTypes.put("Large Mangled Skeleton", 2);
-        enemyTypes.put("Giant Decayed Rat", 2);
-        enemyTypes.put("Undead Archer", 2);
-        enemyTypes.put("Undead Knight", 2);
-        enemyTypes.put("Rotten Orc", 3);
-        enemyTypes.put("Cursed Undead Knight", 3);
-        enemyTypes.put("Cursed Undead Archer", 3);
-        enemyTypes.put("Giant Rancid Larvae", 3); 
+    public int getEnemyDifficulty() {
+        return difficulty;
     }
 }

@@ -9,7 +9,7 @@ public class Game {
   // Current question being asked
   private Questions currentQuestion;
   private int currentRoom = 0;
-  private final int Total_Rooms = 10;
+  private final int Total_Rooms = 3;
 
   //Game States for managing the different phases of the game. At any time, the game is in one of these states.
   private final int STATE_START = 0;
@@ -64,7 +64,7 @@ public class Game {
               gameState = STATE_BOSS_FIGHT;
             } 
             else if(currentDifficulty < DIFFICULTY_HARD){
-              System.out.println("You sense the power of the dungeon growing stronger...\n");
+              System.out.println("\nYou sense the power of the dungeon growing stronger...\n");
               currentDifficulty++;
               this.dungeon = new Dungeon(currentDifficulty, Total_Rooms);
               currentRoom = 0;
@@ -168,40 +168,59 @@ public class Game {
     
   }
 
-  private void processRoom(){
-
-    if (!player.isAlive()){
-      return;
-    }
-    currentQuestion= dungeon.getNextQuestion();
-    
-    if (currentQuestion ==null){
-      System.out.println("No more questions available.");
-      currentRoom = Total_Rooms;
-      return;
-   }
-   
-    System.out.println("- Room " + (currentRoom + 1) + " -");
-    System.out.println("Question: " + currentQuestion.getQuestionText());
-
-   if (currentQuestion instanceof MultipleChoice) {
+  private void selectMCQuestion(){
+    if (currentQuestion instanceof MultipleChoice) {
       MultipleChoice mcQuestion = (MultipleChoice) currentQuestion;
       String[] options = mcQuestion.getOptions();
       for (int i = 0; i < options.length; i++) {
         System.out.println((i + 1) + ". " + options[i]);
       }
     }
+  }
 
-    System.out.print("Your answer: ");
-    String playerAnswer = scanner.nextLine();
+  private void processRoom() {
+    if (!player.isAlive()) return;
 
-    if (currentQuestion.checkAnswer(playerAnswer)) {
-      System.out.println("Correct! You may proceed to the next room.");
-      // currentQuestion.applyReward(player); // Uncomment when applyReward is implemented
-      currentRoom++;
-    } else {
-      System.out.println("Incorrect! ");
-      player.takeDamage(1);
+    Enemy enemy = new Enemy(currentDifficulty);
+    System.out.println("\n- Room " + (currentRoom + 1) + " -\n");
+    System.out.println(enemy.getEnemyName() + " challenges you!\n");
+
+    while(enemy.isAlive() && player.isAlive()) {
+
+      currentQuestion = dungeon.getNextQuestion();
+      
+      /*if(currentQuestion == null) {
+        System.out.println("No more questions available.");
+        currentRoom = Total_Rooms;
+        return;
+      }*/
+
+      System.out.println("Question: " + currentQuestion.getQuestionText());
+      selectMCQuestion();
+
+      System.out.print("Your answer: ");
+      String playerAnswer = scanner.nextLine();
+
+      if(currentQuestion.checkAnswer(playerAnswer)){
+        enemy.takeDamage(1);
+        System.out.println("Correct! You damaged the enemy. Enemy Life: " + enemy.getHealth() + "\n");
+
+        if(!enemy.isAlive()){
+            System.out.println("\nYou defeated " + enemy.getEnemyName());
+            currentRoom++;
+            System.out.println("You move onward to the next room.\n");
+            return;
+        }
+
+      }else{
+        player.takeDamage(1);
+        System.out.println("Incorrect! " + enemy.getEnemyName() + " attacks! Current Life: " + player.getHealth());
+
+        if(!player.isAlive()){
+            System.out.println("You have been defeated...");
+            return;
+        }
+      }
     }
   }
 
@@ -249,10 +268,10 @@ public class Game {
       Questions currentQuestion = dungeon.getBossQuestion();
 
       if (currentQuestion == null) {
-        System.out.println("No more boss questions available.\n");
+        System.out.println("You took too long to defeat the boss...The Encapuslator has encapsulated your soul for the rest of eternity...\n");
         break;
       }
-      
+
       System.out.println("\nBoss Question: " + currentQuestion.getQuestionText());
 
       if (currentQuestion instanceof MultipleChoice) {
@@ -271,6 +290,7 @@ public class Game {
       } else {
         System.out.println("Incorrect! " + boss.getAttackLine());
         boss.attacks(player);
+        System.out.println("Current Life: " + player.getHealth());
       }
     }
 

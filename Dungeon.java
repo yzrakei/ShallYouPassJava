@@ -48,6 +48,9 @@ public class Dungeon {
         easyQuestions.add(new MultipleChoice("Which is a valid conditional statement?", "", 1, new String[]{"", "", "", ""}));
         easyQuestions.add(new MultipleChoice("", "", 1, new String[]{"", "", "", ""}));
         easyQuestions.add(new MultipleChoice("", "", 1, new String[]{"", "", "", ""}));
+        easyQuestions.add(new MultipleChoice("", "", 1, new String[]{"", "", "", ""}));
+        easyQuestions.add(new MultipleChoice("", "", 1, new String[]{"", "", "", ""}));
+        easyQuestions.add(new MultipleChoice("", "", 1, new String[]{"", "", "", ""}));
 
 
         //-----Medium Difficulty Questions-----
@@ -56,14 +59,36 @@ public class Dungeon {
         mediumQuestions.add(new MultipleChoice("Which of these is NOT a valid loop in Java?", "repeat-until loop", 2, new String[]{"for loop", "while loop", "do-while loop", "repeat-until loop"}));
         mediumQuestions.add(new MultipleChoice("", "", 2, new String[]{"", "", "", ""}));
         mediumQuestions.add(new MultipleChoice("", "", 2, new String[]{"", "", "", ""}));
+        mediumQuestions.add(new MultipleChoice("", "", 2, new String[]{"", "", "", ""}));
+        mediumQuestions.add(new MultipleChoice("", "", 2, new String[]{"", "", "", ""}));
+        mediumQuestions.add(new MultipleChoice("", "", 2, new String[]{"", "", "", ""}));
+        mediumQuestions.add(new MultipleChoice("", "", 2, new String[]{"", "", "", ""}));
+        mediumQuestions.add(new MultipleChoice("", "", 2, new String[]{"", "", "", ""}));
+        mediumQuestions.add(new MultipleChoice("", "", 2, new String[]{"", "", "", ""}));
+        mediumQuestions.add(new MultipleChoice("", "", 2, new String[]{"", "", "", ""}));
+        mediumQuestions.add(new MultipleChoice("", "", 2, new String[]{"", "", "", ""}));
 
         //-----Hard Difficulty Questions-----
         hardQuestions.add(new MultipleChoice("What kind of loop is guaranteed to execute at least once?", "do-while loop", 3, new String[]{"for loop", "while loop", "do-while loop", "enhanced for loop"}));
         hardQuestions.add(new MultipleChoice("Interfaces in Java can contain which of the following?", "All of the above", 3, new String[]{"Abstract methods", "Default methods", "Static methods", "All of the above"}));
+        hardQuestions.add(new MultipleChoice("", "", 2, new String[]{"", "", "", ""}));
+        hardQuestions.add(new MultipleChoice("", "", 2, new String[]{"", "", "", ""}));
+        hardQuestions.add(new MultipleChoice("", "", 2, new String[]{"", "", "", ""}));
+        hardQuestions.add(new MultipleChoice("", "", 2, new String[]{"", "", "", ""}));
+        hardQuestions.add(new MultipleChoice("", "", 2, new String[]{"", "", "", ""}));
+        hardQuestions.add(new MultipleChoice("", "", 2, new String[]{"", "", "", ""}));
+        hardQuestions.add(new MultipleChoice("", "", 2, new String[]{"", "", "", ""}));
+        hardQuestions.add(new MultipleChoice("", "", 2, new String[]{"", "", "", ""}));
+        hardQuestions.add(new MultipleChoice("", "", 2, new String[]{"", "", "", ""}));
+        hardQuestions.add(new MultipleChoice("", "", 2, new String[]{"", "", "", ""}));
 
         //-----Boss Questions-----
         bossQuestions.add(new MultipleChoice("What is the output of the following code snippet?\n\npublic class Test {\n    public static void main(String[] args) {\n        int x = 5;\n        System.out.println(x++ + ++x);\n    }\n}", "12", 3, new String[]{"11", "12", "10", "Error"}));
+        bossQuestions.add(new MultipleChoice("What is Encapsulation in Java?", "It is a process of wrapping data and methods in a single unit.", 3, new String[]{"It is a process of defining multiple interfaces.", "It is a process of creating objects from classes.", "It is a process of wrapping data and methods in a single unit.", "It is a process of establishing relationships between classes."}));
         bossQuestions.add(new MultipleChoice("Which of the following is NOT a valid Java identifier?", "3DPoint", 3, new String[]{"_myVar", "myVar2", "3DPoint", "$value"}));
+        bossQuestions.add(new MultipleChoice("Which keyword is used to create a constant variable?", "final", 3, new String[]{"static", "final", "private", "protected"}));
+        bossQuestions.add(new MultipleChoice("Which of the following is not an example of encapsulation in Java?", "Using static variables and methods to access data without instantiating an object.", 3, new String[]{"Using static variables and methods to access data without instantiating an object.", "Grouping related variables and methods within a class.", "Using private variables in a class and providing public methods to access them.", "Using access modifiers to control the visibility of variables and methods."}));
+        bossQuestions.add(new MultipleChoice("Which keyword is used to create a getter method in Java?", "getVariableName()", 3, new String[]{"get()", "return()", "get", "getVariableName()"}));
         bossQuestions.add(new MultipleChoice("What will be the result of the following code?\n\nString str = null;\nSystem.out.println(str.length());", "Throws NullPointerException", 3, new String[]{"Prints 0", "Prints null", "Throws NullPointerException", "Compilation error"}));
         bossQuestions.add(new MultipleChoice("Which of these keywords is used to prevent a method from being overridden in Java?", "final", 3, new String[]{"static", "final", "private", "protected"}));
     }
@@ -79,11 +104,11 @@ public class Dungeon {
             sourcePool = hardQuestions;
         }
 
-        for (int i = 0; i < totalRooms; i++) {
+        for (int i = 0; i < 100/*please change this later*/; i++) {
             if (i < sourcePool.size()){
                 currentQuestions.add(sourcePool.get(i));
             } else{
-                // If not enough questions, recycle from the start
+                // recycles from the start if not enough questions
                 currentQuestions.add(sourcePool.get(i % sourcePool.size()));
             }
         }
