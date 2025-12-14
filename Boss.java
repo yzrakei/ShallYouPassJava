@@ -7,6 +7,7 @@ public class Boss{
     private final int maxHealth;
     private String[] attackLines;
     private String[] takeDamageLines;
+    private String introLine;
 
     public Boss(){
 
@@ -26,6 +27,8 @@ public class Boss{
             name + "'s parameters get cut!",
             name + " malfunctions! ",
         };
+
+        introLine = name + ": \"Who dares enter my class. YOU WILL BE ENCAPUSLATED!\"";
     }
 
 
@@ -62,5 +65,9 @@ public class Boss{
 
     public String getAttackLine() {
         return attackLines[random.nextInt(attackLines.length)];
+    }
+
+    public String getIntroLine() {
+        return introLine;
     }
 }
