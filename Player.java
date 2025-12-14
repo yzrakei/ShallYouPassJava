@@ -1,14 +1,12 @@
 public class Player {
   private int health;
   private int maxHealth;
-  private int selectedDifficulty;
   private String playerName;
 
   public Player(String playerName) {
     this.playerName = playerName;
     this.health = 3;
     this.maxHealth = 3;
-    this.selectedDifficulty = 0; 
   }
 
   
@@ -18,7 +16,7 @@ public class Player {
 
   public void takeDamage(int damage) {
     this.health -= damage;
-    if (this.health <= 0) {
+    if (!isAlive()) {
       System.out.println("YOU PERISHED! " + playerName + " shall NOT pass Java!");
       this.health = 0;
     }
@@ -28,15 +26,6 @@ public class Player {
     this.health = this.maxHealth;
     System.out.println("Max health increased! Current max health: " + this.maxHealth);
     }
-
-  
-  public int getSelectedDifficulty() {
-    return selectedDifficulty;
-  }
-
-  public void setSelectedDifficulty(int selectedDifficulty) {
-    this.selectedDifficulty = selectedDifficulty;
-  }
   
   public String getPlayerName() {
     return playerName;

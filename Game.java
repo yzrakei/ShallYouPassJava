@@ -4,6 +4,7 @@ public class Game {
   private Player player;
   private Dungeon dungeon;
   private Scanner scanner;
+  private int currentDifficulty;
 
   // Current question being asked
   private Questions currentQuestion;
@@ -12,11 +13,18 @@ public class Game {
 
   //Game States for managing the different phases of the game. At any time, the game is in one of these states.
   private final int STATE_START = 0;
-  private final int STATE_IN_DUNGEON = 1;
-  private final int STATE_BOSS_FIGHT = 2;
-  private final int STATE_GAME_OVER = 3;
+  private final int STATE_STORY = 1;
+  private final int STATE_IN_DUNGEON = 2;
+  private final int STATE_BOSS_FIGHT = 3;
+  private final int STATE_GAME_OVER = 4;
   
   private int gameState;
+
+  //difficulty states
+  private final int DIFFICULTY_EASY = 1;
+  private final int DIFFICULTY_MEDIUM = 2;  
+  private final int DIFFICULTY_HARD = 3;
+  private final int DIFFICULTY_BOSS = 4;
 
   // Constructor
   
@@ -36,34 +44,41 @@ public class Game {
     switch (gameState) {
       case STATE_START:
         displayIntro();
-        handleDifficultySelection();
-        gameState = STATE_IN_DUNGEON;
+        gameState = STATE_STORY;
+        break;
+
+      case STATE_STORY:
+        level1();
         break;
 
       case STATE_IN_DUNGEON:
-      if (!player.isAlive()) {
-          System.out.println("THE SETUP WIZARD: \"Another vanguard fallen...\"");
-          gameState = STATE_GAME_OVER;
-        }
-        else if (currentRoom < Total_Rooms) {
-          processRoom();
-        }
-        
-        else {
-         if (player.getSelectedDifficulty() == 3) {
-            gameState = STATE_BOSS_FIGHT;
-          } else {
+        if (!player.isAlive()) {
+            System.out.println("THE SETUP WIZARD: \"Another vanguard fallen...\"");
             gameState = STATE_GAME_OVER;
-            System.out.println("Congratulations! You have successfully navigated the dungeon! You HAVE PASSED JAVA! ENJOY YOU NEW CHROMEBOOK!");
           }
-        }
-        break;
+          else if (currentRoom < Total_Rooms) {
+            processRoom();
+          }
+          else {
+            if (currentDifficulty == DIFFICULTY_HARD) {
+              gameState = STATE_BOSS_FIGHT;
+            } 
+            else if(currentDifficulty < DIFFICULTY_HARD){
+              System.out.println("You sense the power of the dungeon growing stronger...\n");
+              currentDifficulty++;
+              this.dungeon = new Dungeon(currentDifficulty, Total_Rooms);
+              currentRoom = 0;
+            }
+            else{
+              gameState = STATE_GAME_OVER;
+          }
+  
+          }
+          break;
       
       case STATE_BOSS_FIGHT:
         bossFight();
         break;
-        
-
         
       case STATE_GAME_OVER:
         break;
@@ -128,30 +143,29 @@ public class Game {
     System.out.println("Prepare yourself "+ playerName + "... Your journey begins now...\n\n═══════════════════════════════════════════════════════════════════════════\n");
   }
    
-    
-  private void handleDifficultySelection(){
-
-    System.out.println("Select Difficulty Level:");
-    System.out.println("1. Easy ");
-    System.out.println("2. Medium ");
-    System.out.println("3. Hard ");
-
-    int difficulty = 0;
-    while (difficulty < 1 || difficulty > 3) {
-      System.out.print("Enter your choice (1-3): ");
+  private void level1(){
+    int option = 0;
+    System.out.println("There are two pathways ahead of you:\n1. A narrow dusty hallway\n2. A dark spiral staircase (Option 2)\nWhich path do you choose? (1 or 2)\n");
+    while (option < 1 || option > 2) {
+      System.out.print("Enter your choice (1-2): ");
       try {
-        difficulty = Integer.parseInt(scanner.nextLine());
-        if (difficulty < 1 || difficulty > 3) {
-          System.out.println("Invalid choice. Please select a valid difficulty level.");
-        }
+        option = Integer.parseInt(scanner.nextLine());
       } catch (NumberFormatException e) {
-        System.out.println("Invalid input. Please enter a number between 1 and 3.");
+        System.out.println("Invalid input. Please enter a number between 1 and 2.");
       }
     }
-    player.setSelectedDifficulty(difficulty);
-
-    this.dungeon = new Dungeon(difficulty, Total_Rooms);
-    System.out.println(player.getPlayerName() + " has entered the room...\n\n");
+    if(option == 1){
+      System.out.println("You tread carefully down the hall...\n");
+      currentDifficulty = DIFFICULTY_HARD;
+      this.dungeon = new Dungeon(currentDifficulty, Total_Rooms);
+      gameState = STATE_IN_DUNGEON;
+    } else {
+      System.out.println("You descend into the unknown...\n");
+      currentDifficulty = DIFFICULTY_EASY;  
+      this.dungeon = new Dungeon(currentDifficulty, Total_Rooms);
+      gameState = STATE_IN_DUNGEON;
+    }
+    
   }
 
   private void processRoom(){
@@ -167,7 +181,7 @@ public class Game {
       return;
    }
    
-    System.out.println("You enter room " + (currentRoom + 1) + " of the dungeon.");
+    System.out.println("- Room " + (currentRoom + 1) + " -");
     System.out.println("Question: " + currentQuestion.getQuestionText());
 
    if (currentQuestion instanceof MultipleChoice) {
@@ -186,7 +200,7 @@ public class Game {
       // currentQuestion.applyReward(player); // Uncomment when applyReward is implemented
       currentRoom++;
     } else {
-      System.out.println("Incorrect! You take damage.");
+      System.out.println("Incorrect! ");
       player.takeDamage(1);
     }
   }
@@ -226,7 +240,9 @@ public class Game {
             "._   \\`._`--','    )   o `.    <       :     \\  ( ( ,. \\  \\\\\r\n" + //
             ". `.\\\\\\  `-,'     /  ,-.___`-.  :      |      \\  \\ `' ) )  \\\r\n" + //
             " \\  \\\\     |      |  `-.   `-'  |     ,'-._   \\`._`--','    )\r\n" + //
-            ") )  \\     :       >    `. o   (    ,',--. `.\\\\\\  `-,'-hrr-/  ,\r\n");
+            ") )  \\     :       >    `. o   (    ,',--. `.\\\\\\  `-,'/  ,\r\n");
+
+    System.out.println(boss.getIntroLine());
 
     while(player.isAlive() && !boss.isDefeated()){
       
