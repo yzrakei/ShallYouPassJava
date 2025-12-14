@@ -20,6 +20,6 @@ public abstract class Question {
         return difficultyLevel;
     }
 
-    //public abstract void applyReward(Player player);
+    // public abstract void applyReward(Player player);
 
 }

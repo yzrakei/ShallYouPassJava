@@ -9,7 +9,29 @@ public class MultipleChoice extends Question {
 
     @Override
     public boolean checkAnswer(String input) {
-        return input.trim().equalsIgnoreCase(this.correctAnswer);
+        String normalizedInput = input.trim();
+
+        if (normalizedInput.equalsIgnoreCase(this.correctAnswer.trim())) {
+            return true;
+        }
+       
+        try{
+            int choiceNumber = Integer.parseInt(normalizedInput);
+            int choiceIndex = choiceNumber - 1;
+
+            if(choiceIndex >= 0 && choiceIndex < options.length) {
+
+                String selectedOption = this.options[choiceIndex];
+
+                if (selectedOption.equalsIgnoreCase(this.correctAnswer.trim())) {
+                    return true;
+                }
+            }
+        } catch (NumberFormatException e){
+            
+        }
+        return false;
+
     }
 
     // @Override
