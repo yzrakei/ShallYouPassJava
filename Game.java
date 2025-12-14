@@ -295,7 +295,13 @@ public class Game {
     }
 
     if (boss.isDefeated()) {
-      System.out.println("\n══════════════════════════════════════════════\n- GREAT ENEMY VANQUISHED! -\n══════════════════════════════════════════════\nThree more pillars remain...\n\nWhat will your future await?");
+      System.out.println("\n══════════════════════════════════════════════\n- GREAT ENEMY VANQUISHED! -\n══════════════════════════════════════════════\n");
+      System.out.println("              />\r\n" + //
+                " (           //------------------------------------------------------(\r\n" + //
+                "(*)OXOXOXOXO(*>                  --------                             \\\r\n" + //
+                " (           \\\\--------------------------------------------------------)\r\n" + //
+                "              \\>\n");
+      System.out.println("Three more pillars remain...\n\nWhat will your future await?");
     } else {
       System.out.println("You have been defeated by " + boss.getName() + "...\n");
     }
