@@ -1,6 +1,6 @@
 # SHALL YOU PASS JAVA?
 
-**Team Members:** Rachel Lo, Jordan Lee, Christian Dell'Edera<br?
+**Team Members:** Rachel Lo, Jordan Lee, Christian Dell'Edera<br>
 **Category:** Educational/Entertainment
 
 ## 1. PROBLEM STATEMENT
