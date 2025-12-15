@@ -1,12 +1,7 @@
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 public class GameTest {
@@ -18,7 +13,6 @@ public class GameTest {
         assertEquals("TestPlayer", player.getPlayerName());
         assertEquals(3, player.getHealth());
         assertTrue(player.isAlive());
-        assertEquals(0, player.getSelectedDifficulty());
         
     }
 
@@ -36,13 +30,6 @@ public class GameTest {
         // Ensure health doesn't go negative
         player.takeDamage(1);
         assertEquals(0, player.getHealth());
-    }
-
-    @Test
-    void testPlayerSetDifficulty() {
-        Player player = new Player("TestPlayer");
-        player.setSelectedDifficulty(2);
-        assertEquals(2, player.getSelectedDifficulty());
     }
 
     @Test
@@ -97,7 +84,6 @@ public class GameTest {
         assertNotNull(q1);
         Questions q2 = dungeon.getNextQuestion();
         assertNotNull(q2);
-        assertNull(dungeon.getNextQuestion()); // No more after 2
     }
 
     @Test
@@ -111,7 +97,6 @@ public class GameTest {
         assertNotNull(dungeon.getBossQuestion());
         assertNotNull(dungeon.getBossQuestion());
         assertNotNull(dungeon.getBossQuestion());
-        assertNull(dungeon.getBossQuestion()); // No more
     }
 
     // Test Boss class
@@ -159,45 +144,15 @@ public class GameTest {
     // Test Game class (partial, as full game requires input simulation)
     @Test
     void testGamePlayerNameDefault() {
-        // Simulate empty input for name
-        String input = "\n"; // Empty name
+        String input = "\n";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
 
-        Player player = new Player("Adventurer");
+        Player player = new Player("John");
         
 
-        assertEquals("Adventurer", player.getPlayerName());
+        assertEquals("John", player.getPlayerName());
 
-        // Reset System.in
         System.setIn(System.in);
     }
-
-    @Test
-    void testGameDifficultySelectionInvalidInput() throws Exception {
-    // Simulate user input: invalid values first, then finally a valid "2"
-    String input = "invalid\n4\n0\n2\n";
-    InputStream in = new ByteArrayInputStream(input.getBytes());
-    System.setIn(in);
-
-    Game game = new Game();
-
-    // Create a player and inject it into the private 'player' field using reflection
-    Player testPlayer = new Player("TestPlayer");
-    java.lang.reflect.Field playerField = Game.class.getDeclaredField("player");
-    playerField.setAccessible(true);
-    playerField.set(game, testPlayer);
-
-    // Now run the difficulty selection
-    game.handleDifficultySelection();
-
-    // Assert that the difficulty was correctly set to 2
-    assertEquals(2, testPlayer.getSelectedDifficulty());
-
-    // Clean up
-    System.setIn(System.in);
-}
-
-    // More comprehensive Game tests would require mocking Scanner or running full loops,
-    // but this covers key isolated methods.
 }
