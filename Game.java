@@ -97,7 +97,7 @@ public class Game {
     System.out.println("╚════════════════════════════════════════════════════════════════════════╝\n");
     
     System.out.println("You awake in the depths of a dark dungeon...");
-    System.out.println("The only visible is the dim light emitted from a lone chromebook on a pedestal.\n");
+    System.out.println("The only visible is the dim light emitted from a lone Chrome Book on a pedestal.\n");
     System.out.println("      __...--~~~~~-._   _.-~~~~~--...__\n" + //
             "    //               `V'               \\ \n" + //
             "   //                 |                 \\ \n" + //
@@ -128,7 +128,7 @@ public class Game {
     System.out.println(" 1. Navigate through 10 rooms filled with challenges");
     System.out.println(" 2. Answer questions correctly to proceed");
     System.out.println(" 3. Wrong answers will cost you health");
-    System.out.println(" 4. Survive and escape to claim your Chromebook!");
+    System.out.println(" 4. Survive and escape to claim your Chrome Book!");
     System.out.println("═════════════════════════════════════════════════════\n");
 
     System.out.println("Before we begin, what shall we call you wanderer? ");
@@ -227,7 +227,7 @@ public class Game {
   private void bossFight(){
     Boss boss = dungeon.getFinalBoss();
 
-    System.out.println("You have reached the final room...\nYou step into the murky fog...\n");
+    System.out.println("You have reached the final room...\nYou step into the murky fog veil...\n");
     System.out.println("\\`._`--','    )   o `.    <       :     \\  ( ( ,. \\  \\\\\r\n" + //
             "\\\\\\  `-,'     /  ,-.___`-.  :      |      \\  \\ `' ) )  \\\r\n" + //
             "\\\\     |      |  `-.   `-'  |     ,'-._   \\`._`--','    )   o\r\n" + //
