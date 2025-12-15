@@ -145,7 +145,7 @@ public class Game {
    
   private void level1(){
     int option = 0;
-    System.out.println("There are two pathways ahead of you:\n1. A narrow dusty hallway\n2. A dark spiral staircase (Option 2)\nWhich path do you choose? (1 or 2)\n");
+    System.out.println("There are two pathways ahead of you:\n1. A narrow dusty hallway\n2. A dark spiral staircase\nWhich path do you choose? (1 or 2)\n");
     while (option < 1 || option > 2) {
       System.out.print("Enter your choice (1-2): ");
       try {
