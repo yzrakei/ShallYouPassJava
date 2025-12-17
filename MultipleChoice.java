@@ -1,12 +1,15 @@
 
+// MultipleChoice question type class. Allows for expansion of different question types in the future.
 public class MultipleChoice extends Questions {
     private String[] options;
 
+    //Constructor for MultipleChoice questions, takes in question text, correct answer, difficulty level, and the list of options.
     public MultipleChoice(String questionText, String correctAnswer, int difficultyLevel, String[] options) {
         super(questionText, correctAnswer, difficultyLevel);
         this.options = options;
     }
 
+    // The CheckAnswer method checks for both the text of the answer and the number corresponding to the choice for smoother user experience.
     @Override
     public boolean checkAnswer(String input) {
         String normalizedInput = input.trim();
@@ -34,7 +37,7 @@ public class MultipleChoice extends Questions {
 
     }
 
-    // @Override
+    // @Override Possible future reward system for answering questions correctly.
     // public void applyReward(Player player) {
     //    switch (this.getDifficultyLevel()) {
     //        case 1:

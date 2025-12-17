@@ -20,6 +20,9 @@ public abstract class Questions {
         return difficultyLevel;
     }
 
+    public String getCorrectAnswer() {
+        return correctAnswer;
+    }
     // public abstract void applyReward(Player player);
 
 }

@@ -4,12 +4,12 @@ public class Game {
   private Player player;
   private Dungeon dungeon;
   private Scanner scanner;
-  private int currentDifficulty;
+  private int currentDifficulty; //Tracks the difficulty level
 
-  // Current question being asked
+  // Current question being asked in processRoom or bossFight
   private Questions currentQuestion;
   private int currentRoom = 0;
-  private final int Total_Rooms = 3;
+  private final int Total_Rooms = 3; // Fixed number of rooms in the dungeon per difficulty. I wanted to have a fixed number for testing, as well as to make the game more manageable.
 
   //Game States for managing the different phases of the game. At any time, the game is in one of these states.
   private final int STATE_START = 0;
@@ -20,11 +20,11 @@ public class Game {
   
   private int gameState;
 
-  //difficulty states
+  //difficulty states, questions are loaded based on these levels
   private final int DIFFICULTY_EASY = 1;
   private final int DIFFICULTY_MEDIUM = 2;  
   private final int DIFFICULTY_HARD = 3;
-  private final int DIFFICULTY_BOSS = 4;
+ 
 
   // Constructor
   
@@ -39,7 +39,7 @@ public class Game {
       handleGameState();
     }
   }
-
+//Main game state handler. Based on the current game state, it calls the appropriate method to handle that state. For example, if the game is in the STATE_IN_DUNGEON state, it calls processRoom() to handle the room challenges.
   private void handleGameState() {
     switch (gameState) {
       case STATE_START:
@@ -66,6 +66,12 @@ public class Game {
             else if(currentDifficulty < DIFFICULTY_HARD){
               System.out.println("\nYou sense the power of the dungeon growing stronger...\n");
               currentDifficulty++;
+
+              if (currentDifficulty == DIFFICULTY_MEDIUM) {
+                System.out.println("THE SETUP WIZARD: \"Well done, brave VSCode Vanguard! The dungeon grows more challenging ahead. Prepare yourself!\"\n");
+              } else if (currentDifficulty == DIFFICULTY_HARD) {
+                System.out.println("THE SETUP WIZARD: \"Impressive! You've reached the highest difficulty before the final challenge. Stay vigilant, the toughest trials await!\"\n");
+              }
               this.dungeon = new Dungeon(currentDifficulty, Total_Rooms);
               currentRoom = 0;
             }
@@ -90,7 +96,7 @@ public class Game {
       }
   }
 
-
+// Displays the game introduction and set up the player. Script was initially made by Christian, then Rachel finalized it and included the text-based art.
   private void displayIntro(){
     System.out.println("\n╔════════════════════════════════════════════════════════════════════════╗");
     System.out.println("║                    THE DUNGEON OF JAVA                                 ║");
@@ -131,10 +137,16 @@ public class Game {
     System.out.println(" 4. Survive and escape to claim your Chrome Book!");
     System.out.println("═════════════════════════════════════════════════════\n");
 
+   
     System.out.println("Before we begin, what shall we call you wanderer? ");
   
+    // Prompt the player to enter their name
+    
     System.out.println("- Enter your player name: -");
+   
     String playerName = scanner.nextLine();
+    // Set default name if none provided
+    
     if(playerName == null || playerName.trim().isEmpty()){
       playerName = "Gerard";
     }
@@ -189,11 +201,11 @@ public class Game {
 
       currentQuestion = dungeon.getNextQuestion();
       
-      if(currentQuestion == null) {
+      /*if(currentQuestion == null) {
         System.out.println("No more questions available.");
         currentRoom = Total_Rooms;
         return;
-      }
+      }*/
 
       System.out.println("Question: " + currentQuestion.getQuestionText());
       selectMCQuestion();
@@ -213,8 +225,11 @@ public class Game {
         }
 
       }else{
+        String correctAnswer= currentQuestion.getCorrectAnswer();
+
+        System.out.println("Incorrect! The correct answer was: " + correctAnswer + "!\n");
         player.takeDamage(1);
-        System.out.println("Incorrect! " + enemy.getEnemyName() + " attacks! Current Life: " + player.getHealth());
+        System.out.println(enemy.getEnemyName() + " attacks! Current Life: " + player.getHealth());
 
         if(!player.isAlive()){
             System.out.println("You have been defeated...");
@@ -288,7 +303,9 @@ public class Game {
         System.out.println("Correct! You dealt damage to the Boss.");
         boss.takeDamage(1);
       } else {
-        System.out.println("Incorrect! " + boss.getAttackLine());
+        String correctAnswer = currentQuestion.getCorrectAnswer();
+        System.out.println("Incorrect! The correct answer was: " + correctAnswer + "!");
+        System.out.println(boss.getAttackLine());
         boss.attacks(player);
         System.out.println("Current Life: " + player.getHealth());
       }
