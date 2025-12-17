@@ -65,9 +65,9 @@
 ## 8. Reflections & Lessons Learned
 
 
-| Reflection Area | The Big Takeaway | The Growth Moment |
+| Reflection Area | Reflection | The Lesson Learned |
 | :--- | :--- | :--- |
-| **OOP Design** | The initial choice of a base class name was critical—a simple error there cascaded through the entire project. | **Discipline:** Learned to enforce strict naming conventions and define the core abstract classes early to prevent structural ambiguity. |
-| **Project Planning** | Estimating the time required for tricky logic (polymorphism, bug fixing) is harder than estimating simple feature coding. | **Mitigation:** Learned to build in significant buffer time for "critical bug fixing" beyond the initial coding estimates. |
-| **Testing** | Unit testing is indispensable, especially in games where one math error can break the whole combat system. | **Quality:** The JUnit tests became the primary driver for identifying and fixing most logic errors before they ever affected the main game loop. |
-| **Game Design** | Player feedback in an educational game must be immediate. | **Product Enhancement:** The final addition of showing the correct answer after a mistake transformed the game from a punitive quiz into a genuine learning tool. |
+| **OOP Design** | The initial choice of a base class name was critical as a simple error there would persist through the entire project. | Learned to enforce strict naming conventions and define the core abstract classes early to prevent structural ambiguity. |
+| **Project Planning** | Estimating the time required for logic like polymorphism, and bug fixing is harder than estimating simple feature coding. | Learned to build in significant buffer time for "critical bug fixing" beyond the initial coding estimates. |
+| **Testing** | Unit testing is indispensable, especially in games where one math error can break the whole combat system. | The JUnit tests became the primary driver for identifying and fixing most logic errors before they ever affected the main game loop. |
+| **Game Design** | Player feedback in an educational game must be immediate. | The final addition of showing the correct answer after a mistake transformed the game from a punitive quiz into a genuine learning tool. |
