@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Collections;
 
-
+// We decided that using an ArrayList would be the most efficient way to store and manage the questions for the dungeon. Based on the difficulty level selected by the player at the start of the game, we can easily shuffle and select questions from the appropriate list. This allows for dynamic question selection and ensures that players face questions that match their chosen difficulty level as they progress through the dungeon.
 public class Dungeon {
 
     private List<Questions> easyQuestions;
@@ -15,7 +15,7 @@ public class Dungeon {
     
 
     private Boss finalBoss;
-
+    // Constructor for Dungeon class, initializes question lists and loads questions based on difficulty level.
     public Dungeon(int difficulty, int totalRooms) {
     
        
@@ -27,7 +27,7 @@ public class Dungeon {
 
         loadQuestions();
 
-        // Randomly shuffle and select questions based on difficulty
+        // Randomly shuffle and select questions based on difficulty. This ensures a varied experience each time the dungeon is created akin to a roguelike game.
 
         Collections.shuffle(easyQuestions);
         Collections.shuffle(mediumQuestions);
@@ -39,7 +39,7 @@ public class Dungeon {
             this.finalBoss = new Boss();
         }
     }
-    //Used AI to efficiently load questions we found or created
+    //Used AI to efficiently load questions we found or created.
     private void loadQuestions() {
         //-----Easy Difficuly Questions-----
         easyQuestions.add(new MultipleChoice("What is the keyword to define a class in Java?", "class", 1, new String[]{"class", "def", "struct", "object"}));
@@ -65,17 +65,15 @@ public class Dungeon {
         mediumQuestions.add(new MultipleChoice("Which collection is does not allow duplicate elements?", "Set", 3, new String[]{"List", "Map", "Set", "Queue "}));
         mediumQuestions.add(new MultipleChoice("Which keyword is used to inherit a class in Java?", "extends", 1, new String[]{"extends", "implements", "inherits", "super"}));
         mediumQuestions.add(new MultipleChoice("Which of these is NOT one of the Four Pillars of OOP?", "Jafafication", 4, new String[]{"Encapsulation", "Inheritance", "Polymorphism", "Jafafication"}));
-           
+        mediumQuestions.add(new MultipleChoice("What is the output? System.out.print(5 + 3 * 2);", "11", 2, new String[]{"16", "11", "21", "Error"}));
+        mediumQuestions.add(new MultipleChoice("Which of these is NOT a primitive data type in Java?", "String", 1, new String[]{"int", "boolean", "char", "String"}));
 
         //-----Hard Difficulty Questions-----
         hardQuestions.add(new MultipleChoice("What kind of loop is guaranteed to execute at least once?", "do-while loop", 3, new String[]{"for loop", "while loop", "do-while loop", "enhanced for loop"}));
         hardQuestions.add(new MultipleChoice("Interfaces in Java can contain which of the following?", "All of the above", 4, new String[]{"Abstract methods", "Default methods", "Static methods", "All of the above"}));
         hardQuestions.add(new MultipleChoice("Output? Integer a=128, b=128; a==b", "false", 2, new String[]{"true", "false", "i dont know", "i wanna go home"}));
-        hardQuestions.add(new MultipleChoice("Output? System.out.print(0.0/0.0)", "NaN", 1, new String[]{"NaN", "0", "ArithmeticException", "Error"}));
         hardQuestions.add(new MultipleChoice("Output? System.out.print(-0.0 == 0.0)", "true", 1, new String[]{"true", "false", "NaN", "Compilation Error"}));
-        hardQuestions.add(new MultipleChoice("Output? System.out.print(Double.NaN == Double.NaN)", "false", 2, new String[]{"true", "false", "NaN", "Compilation Error"}));
         hardQuestions.add(new MultipleChoice("How many types of primitive data in Java are present?", "8", 2, new String[]{"7", "8", "10", "5"}));
-        hardQuestions.add(new MultipleChoice("Which is not a valid Java identfier?", "3DPoint", 1, new String[]{"3DPoint", "myVar", "_var", "$value"}));
         hardQuestions.add(new MultipleChoice("Which access is the most restrictive?", "private", 4, new String[]{"public", "protected", "default", "private"}));
         hardQuestions.add(new MultipleChoice("Which is checked at compile time? (Must be caught/declared)", "IOException", 1, new String[]{"IOException", "NullPointerException", "ArithmeticException", "Error"}));
         hardQuestions.add(new MultipleChoice("Which is true about Hashmap?","Hashmap keys must be unique", 1, new String[]{"Hashmap keys must be unique", "Hashmap allows duplicate keys", "Hashmap is synchronized", "Hashmap maintains insertion order"}));
@@ -90,6 +88,10 @@ public class Dungeon {
         hardQuestions.add(new MultipleChoice("Which statement about abstract classes is true?", "Abstract classes cannot be instantiated", 2, new String[]{"Abstract classes must have abstract methods", "Abstract classes cannot be instantiated", "All methods in abstract classes must be abstract", "Abstract classes cannot have constructors"}));
         hardQuestions.add(new MultipleChoice("What is the difference between '==' and '.equals()' for Strings?", "'==' compares references, .equals() compares content", 3, new String[]{"Both do the same thing", "'==' is faster", "'==' compares references, .equals() compares content", ".equals() only works with Strings"}));
         hardQuestions.add(new MultipleChoice("Which is a functional interface in Java?", "An interface with exactly one abstract method", 1, new String[]{"An interface with exactly one abstract method", "An interface with multiple abstract methods", "An interface that extends another interface", "An interface implemented by a class"}));
+        hardQuestions.add(new MultipleChoice("What is abstraction in OOP?", "Hiding complex implementation details and showing only essential features", 2, new String[]{"Hiding complex implementation details and showing only essential features", "Creating multiple methods with the same name", "Deriving new classes from existing ones", "Wrapping data and methods in a single unit"}));
+        hardQuestions.add(new MultipleChoice("What is the difference between a checked and unchecked exception?", "Checked exceptions must be declared or caught, unchecked do not", 3, new String[]{"Checked exceptions are more severe", "Unchecked exceptions must be declared or caught, checked do not", "Checked exceptions must be declared or caught, unchecked do not", "There is no difference"}));
+        hardQuestions.add(new MultipleChoice("What is the output? String s1 = new String(\"test\"); String s2 = \"test\"; System.out.print(s1 == s2);", "false", 4, new String[]{"true", "false", "Compilation Error", "Runtime Error"}));
+
 
         //-----Boss Questions-----
         bossQuestions.add(new MultipleChoice("What is the output of the following code snippet?\n\npublic class Test {\n    public static void main(String[] args) {\n        int x = 5;\n        System.out.println(x++ + ++x);\n    }\n}", "12", 2, new String[]{"11", "12", "10", "Error"}));
@@ -101,7 +103,7 @@ public class Dungeon {
         bossQuestions.add(new MultipleChoice("What will be the result of the following code?\n\nString str = null;\nSystem.out.println(str.length());", "Throws NullPointerException", 3, new String[]{"Prints 0", "Prints null", "Throws NullPointerException", "Compilation error"}));
         bossQuestions.add(new MultipleChoice("Which of these keywords is used to prevent a method from being overridden in Java?", "final", 2, new String[]{"static", "final", "private", "protected"}));
         }
-
+    // Builds the current run of questions based on the selected difficulty level. Choosing option 1 causes the player to face hard difficulty enemies, while Option 2 leads to easy difficulty enemies, then increases in difficulty as the player progresses.
     private void buildRun(int difficulty) {
         List<Questions> sourcePool;
 
@@ -112,7 +114,7 @@ public class Dungeon {
         } else {
             sourcePool = hardQuestions;
         }
-
+        // Fills the currentQuestions list with a total of 100 questions, recycling from the source pool if necessary. This is to ensure that the dungeon has enough questions for the player to face as they progress through the rooms.
         for (int i = 0; i < 100; i++) {
             if (i < sourcePool.size()){
                 currentQuestions.add(sourcePool.get(i)); 
@@ -122,18 +124,18 @@ public class Dungeon {
             }
         }
      }
-
+    // Retrieves the next question from the currentQuestions list. It then removes the question from the list to avoid repetition. Very important to prevent the same question from appearing multiple times in a single run.
      public Questions getNextQuestion(){
         if (!currentQuestions.isEmpty()) {
             return currentQuestions.remove(0);
         }
         return null; // No more questions
      }
-
+     // Retrieves the final boss of the dungeon. When in the Boss fight state, this method is called to get the boss instance for the final challenge.
      public Boss getFinalBoss(){
         return finalBoss;
      }
-
+    // Retrieves the next boss question from the bossQuestions list. Similar to getNextQuestion, it removes the question from the list to ensure uniqueness.
      public Questions getBossQuestion() {
         if (!bossQuestions.isEmpty()) {
             return bossQuestions.remove(0);

@@ -1,5 +1,8 @@
 import java.util.Random;
+// To create varied enemy encounters, we define an Enemy class that generates enemies based on difficulty level. Each enemy has a name and health points corresponding to its difficulty. 
+//Implemented by Rachel.
 
+// The Enemy class encapsulates enemy attributes and behaviors, allowing for a variety of foes in the game. Better than simply asking the question, it works to immerse the player in a dungeon-crawling experience.
 public class Enemy{
     Random random = new Random();
 
@@ -10,6 +13,7 @@ public class Enemy{
     private String[] mediumEnemies = {"Large Mangled Skeleton", "Giant Decayed Rat", "Undead Archer", "Undead Knight"};
     private String[] hardEnemies = {"Rotten Orc", "Cursed Undead Knight", "Cursed Undead Archer", "Giant Rancid Larvae"};
 
+    // Constructor for Enemy class, initializes enemy based on difficulty level.
     public Enemy(int difficulty){
         this.difficulty = difficulty;
         switch(difficulty) {
@@ -32,10 +36,11 @@ public class Enemy{
         }
     }
 
-    public int getHealth(){
-        return health;
+   
+    public boolean isAlive() {
+        return this.health > 0;
     }
-
+    // Method to apply damage to the enemy and check if it has perished.
     public void takeDamage(int damage){
         this.health -= damage;
         if(!isAlive()){
@@ -44,6 +49,10 @@ public class Enemy{
         }
     }
 
+    // Getter methods for enemy attributes, including health, difficulty, and name.
+     public int getHealth(){
+        return health;
+    }
     public int getDifficulty() {
         return difficulty;
     }
@@ -52,9 +61,6 @@ public class Enemy{
         return enemyName;
     }
 
-    public boolean isAlive() {
-        return this.health > 0;
-    }
 
     public int getEnemyDifficulty() {
         return difficulty;

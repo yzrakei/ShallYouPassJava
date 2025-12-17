@@ -1,5 +1,5 @@
 import java.util.Scanner;
-// Main game class to manage game flow
+// Main game class to manage game flow.
 public class Game {
   private Player player;
   private Dungeon dungeon;
@@ -47,18 +47,19 @@ public class Game {
         gameState = STATE_STORY;
         break;
 
+      // This state handles the initial story setup and player introduction. It calls level1() which asks the player to choose their initial path, setting the difficulty and initializing the dungeon.
       case STATE_STORY:
         level1();
         break;
-
+      // This state manages the main dungeon exploration. It checks if the player is alive and whether there are more rooms to explore. If the player has completed all rooms at the current difficulty, it either progresses to the boss fight or increases the difficulty and resets the dungeon.
       case STATE_IN_DUNGEON:
         if (!player.isAlive()) {
             System.out.println("THE SETUP WIZARD: \"Another vanguard fallen...\"");
             gameState = STATE_GAME_OVER;
-          }
+          }// Starts the room processing which involves answering questions and battling enemies.
           else if (currentRoom < Total_Rooms) {
             processRoom();
-          }
+          }// Based on the difficulty selected at the start, the game either transitions to the boss fight state which starts on hard, or increases the difficulty and resets the dungeon for the next set of rooms.
           else {
             if (currentDifficulty == DIFFICULTY_HARD) {
               gameState = STATE_BOSS_FIGHT;
@@ -81,14 +82,14 @@ public class Game {
   
           }
           break;
-      
+      // Calls the boss fight method to handle the final challenge.
       case STATE_BOSS_FIGHT:
         bossFight();
         break;
-        
+      //Calls the game over state to end the game.
       case STATE_GAME_OVER:
         break;
-      
+      // The defaulty case handles any unexpected game states by printing an error message and transitioning to the game over state.
       default:
         System.out.println("Unknown game state!");
         gameState = STATE_GAME_OVER;
@@ -103,7 +104,7 @@ public class Game {
     System.out.println("╚════════════════════════════════════════════════════════════════════════╝\n");
     
     System.out.println("You awake in the depths of a dark dungeon...");
-    System.out.println("The only visible is the dim light emitted from a lone Chrome Book on a pedestal.\n");
+    System.out.println("The only visible is the dim light emitted from a lone Chrome Book on a pedestal.\n");// Chrome Book to avoid trademark issues. Good substitute right? :)
     System.out.println("      __...--~~~~~-._   _.-~~~~~--...__\n" + //
             "    //               `V'               \\ \n" + //
             "   //                 |                 \\ \n" + //
@@ -154,7 +155,7 @@ public class Game {
 
     System.out.println("Prepare yourself "+ playerName + "... Your journey begins now...\n\n═══════════════════════════════════════════════════════════════════════════\n");
   }
-   
+   // Choosing Option 1 causes the player to face hard difficulty enemies, while Option 2 leads to easy difficulty enemies, then increases in difficulty as the player progresses.
   private void level1(){
     int option = 0;
     System.out.println("There are two pathways ahead of you:\n1. A narrow dusty hallway\n2. A dark spiral staircase\nWhich path do you choose? (1 or 2)\n");
@@ -179,7 +180,7 @@ public class Game {
     }
     
   }
-
+// Used instanceOf to check if the current question is a MultipleChoice type. If it is, it casts the currentQuestion to MultipleChoice and retrieves the options to display them to the player.
   private void selectMCQuestion(){
     if (currentQuestion instanceof MultipleChoice) {
       MultipleChoice mcQuestion = (MultipleChoice) currentQuestion;
@@ -189,7 +190,6 @@ public class Game {
       }
     }
   }
-
   private void processRoom() {
     if (!player.isAlive()) return;
 

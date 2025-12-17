@@ -4,9 +4,12 @@ import java.io.InputStream;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
+// JUnit tests created by Jordan. Covers Player, MultipleChoice, Dungeon, and Boss classes. We wanted to ensure core functionalities work as expected, including health management, answer checking, question retrieval, and boss mechanics.
+
+
 public class GameTest {
 
-    // Test Player class
+    // Test Player class. Tests initialization, taking damage, and increasing max health.
     @Test
     void testPlayerInitialization() {
         Player player = new Player("TestPlayer");
@@ -16,7 +19,7 @@ public class GameTest {
         
     }
 
-    @Test
+    @Test //Tests for taking damage. Handles edge cases like health not going negative.
     void testPlayerTakeDamage() {
         Player player = new Player("TestPlayer");
         player.takeDamage(1);
@@ -32,14 +35,14 @@ public class GameTest {
         assertEquals(0, player.getHealth());
     }
 
-    @Test
+    @Test// Handles increasing max health
     void testPlayerIncreaseMaxHealth() {
         Player player = new Player("TestPlayer");
         player.increaseMaxHealth(2);
         assertEquals(5, player.getHealth()); // Health should reset to new max
     }
 
-    // Test MultipleChoice class (extends Questions)
+    // Test MultipleChoice class (extends Questions) Very important for answer checking. 
     @Test
     void testMultipleChoiceCheckAnswerByText() {
         String[] options = {"class", "def", "struct", "object"};
@@ -51,7 +54,7 @@ public class GameTest {
         assertFalse(mc.checkAnswer(""));
     }
 
-    @Test
+    @Test // Tests answer checking by option number. This is for user convenience. Starting out answers were only being accepted by text, from this Christian made the improvement to allow number input as well.
     void testMultipleChoiceCheckAnswerByNumber() {
         String[] options = {"class", "def", "struct", "object"};
         MultipleChoice mc = new MultipleChoice("What is the keyword to define a class in Java?", "class", 1, options);
@@ -63,14 +66,14 @@ public class GameTest {
         assertFalse(mc.checkAnswer("abc")); // Not a number
     }
 
-    @Test
+    @Test // Tests the getOptions method. Should return the array of options provided during initialization.
     void testMultipleChoiceGetOptions() {
         String[] options = {"a", "b", "c"};
         MultipleChoice mc = new MultipleChoice("Test?", "a", 1, options);
         assertArrayEquals(options, mc.getOptions());
     }
 
-    // Test Dungeon class
+    // Test Dungeon class. Will test initialization, question retrieval, and boss question retrieval.
     @Test
     void testDungeonInitializationEasy() {
         Dungeon dungeon = new Dungeon(1, 10);
@@ -99,7 +102,7 @@ public class GameTest {
         assertNotNull(dungeon.getBossQuestion());
     }
 
-    // Test Boss class
+    // Test Boss class. Edge cases for taking damage and attacking player like ensuring health doesn't go negative.
     @Test
     void testBossInitialization() {
         Boss boss = new Boss();
@@ -125,7 +128,7 @@ public class GameTest {
         assertEquals(0, boss.getHealth());
     }
 
-    @Test
+    @Test // Tests boss attacking player. Ensures player health decreases appropriately.
     void testBossAttacks() {
         Boss boss = new Boss();
         Player player = new Player("TestPlayer");
@@ -133,7 +136,7 @@ public class GameTest {
         assertEquals(2, player.getHealth()); // Should deal 1 damage
     }
 
-    @Test
+    @Test // Tests getting an attack line from the boss. Ensures the line contains the boss's name.
     void testBossGetAttackLine() {
         Boss boss = new Boss();
         String line = boss.getAttackLine();
