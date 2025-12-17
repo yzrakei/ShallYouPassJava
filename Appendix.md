@@ -55,9 +55,12 @@
 
 ## 7. Sources
 
-* **Educational Research:** Market reports confirm the programming language learning market is expected to nearly double by 2035 and validate our target student market.
+* **Educational Research:** Market reports confirm the programming language learning market is expected to nearly double by 2035 and validate our target student market. Retrieved from https://www.marketsandmarkets.com/Market-Reports/game-based-learning-market-146337112.html
 * **Technical References:** Code structure (e.g., constants for the **Finite State Machine**) was implemented using established software development patterns.
 * **AI Tools:** Used to quickly format data into our `MultipleChoice` constructor and to assist with debugging complex code segments.
+* **Verified Market Research.** (2025, May). Online coding learning platform market size, scope and forecast (Report No. 449196). https://www.verifiedmarketresearch.com/product/online-coding-learning-platform-market/
+
+* **Hanson, M. (2025, March 17). College enrollment & student demographic statistics.** EducationData.org. https://educationdata.org/college-enrollment-statistics
 
 ## 8. Reflections & Lessons Learned
 
