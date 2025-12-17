@@ -6,7 +6,7 @@
 
 | Team Member | What They Focused On | Key Contributions |
 | :--- | :--- | :--- |
-| **Christian Dell'Edera** | Lead Dev (The Architect) | Designed the core structure (all the OOP classes: `Questions`, `Player`, etc.). Built the main brain of the game, `Game.java`, controlling the intro, levels, and boss fight. |
+| **Christian Dell'Edera** | Lead Developer| Designed the core structure (all the OOP classes: `Questions`, `Player`, etc.). Built the main brain of the game, `Game.java`, controlling the intro, levels, and boss fight. |
 | **Rachel Lo** | Business Analyst | Took ownership of the combat side by creating the `Enemy.java` and `Boss.java` classes. Also polished the entire game script (narrative/dialogue). |
 | **Jordan Lee** | Tester | Was the QA Tester. Created all the JUnit tests (`GameTest.java`) to break and fix the code. Also helped write some of the Java quiz questions. |
 
