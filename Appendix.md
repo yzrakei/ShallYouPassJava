@@ -59,7 +59,7 @@
 * **Technical References:** Code structure (e.g., constants for the **Finite State Machine**) was implemented using established software development patterns.
 * **AI Tools:** Used to quickly format data into our `MultipleChoice` constructor and to assist with debugging complex code segments.
 * **Verified Market Research.** (2025, May). Online coding learning platform market size, scope and forecast (Report No. 449196). https://www.verifiedmarketresearch.com/product/online-coding-learning-platform-market/
-
+* **State Based Game:** Video research on how to implement the different states into the game. https://youtu.be/25PWISDnGsU?si=UQY3fyiu1fvDyDu9
 * **Hanson, M. (2025, March 17). College enrollment & student demographic statistics.** EducationData.org. https://educationdata.org/college-enrollment-statistics
 
 ## 8. Reflections & Lessons Learned
