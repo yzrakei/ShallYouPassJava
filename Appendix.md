@@ -1,83 +1,70 @@
-## Appendix: Shall You Pass Java?
+## Appendix: Team Evil Computer
+
 
 ## 1. Team Contribution
 
 
-| Team Member | Proposal Role | Key Coding & Testing Contributions | Estimated % of Codebase |
-| :--- | :--- | :--- | :--- |
-| **Christian Dell'Edera** | Lead Dev & Researcher | Designed and implemented the core Object-Oriented structure (`Questions`, `MultipleChoice`, `Player`, `Boss`, `Enemy`). Coded the Finite State Machine in `Game.java` to control flow (Intro, Dungeon, Boss Fight). | 45% |
-| **Jordan Lee** | Tester| Developed the JUnit Test system (`GameTest.java`). Ensured proper functionality of `checkAnswer` and combat mechanics. Contributed to question loading in `Dungeon.java`. | 22% |
-| **Rachel Lo** | Business Analyst | Refined the baseline code and contributed to the design and implementation of the `Dungeon.java` content  management system (shuffling, run building). Developed the Boss and Enemy mechanics and dialogue. | 33% |
+| Team Member | What They Focused On | Key Contributions |
+| :--- | :--- | :--- |
+| **Christian Dell'Edera** | Lead Dev (The Architect) | Designed the core structure (all the OOP classes: `Questions`, `Player`, etc.). Built the main brain of the game, `Game.java`, controlling the intro, levels, and boss fight. |
+| **Rachel Lo** | Business Analyst | Took ownership of the combat side by creating the `Enemy.java` and `Boss.java` classes. Also polished the entire game script (narrative/dialogue). |
+| **Jordan Lee** | Tester | Was the QA Tester. Created all the JUnit tests (`GameTest.java`) to break and fix the code. Also helped write some of the Java quiz questions. |
 
-## 2. Java Concepts Applied
+## 2. Concepts Applied 
 
 
-| Concept | Application in Code |
-| :--- | :--- |
-| **Object-Oriented Programming (OOP)** | The entire game is built around classes representing real-world entities (`Player`, `Boss`, `Question`). |
-| **Abstraction & Inheritance** | `Questions.java` is an `abstract` base class that defines the core contract (`checkAnswer`). `MultipleChoice.java` extends this base class. [Image of class inheritance diagram in Java] |
-| **Polymorphism** | The `Game.java` and `Dungeon.java` classes treat all questions generically as `Questions` objects, allowing them to call `currentQuestion.checkAnswer()` regardless of the specific subclass type. |
-| **Encapsulation** | Attributes are protected/private (`protected String correctAnswer` in `Questions.java`) and accessed only through public getters (`getQuestionText()`). |
-| **Finite State Machine** | The `handleGameState()` method in `Game.java` uses constants (`STATE_START`, `STATE_IN_DUNGEON`, etc.) to manage complex game flow logic. |
-| **Collections Framework** | `Dungeon.java` uses `ArrayList` (implemented as `List<Questions>`) and `Collections.shuffle()` to manage and randomize question pools. |
-| **Input/Output** | The standard `Scanner` class (`java.util.Scanner`) is used for reading user input and answers. |
+* **OOP Fundamentals:** We used classes for the player, enemies, and questions.
+* **Abstraction & Polymorphism:** This is the core engine. We created a master blueprint (`Questions.java`) so the game could ask any type of question (like `MultipleChoice`) without caring about the specifics. Also allows for expansion for other types of questions like codesnippet questions.
+* **Encapsulation:** We kept all the important variables (like the correct answer) private, only letting other classes access them through official getter methods.
+* **Finite State Machine (FSM):** The `Game.java` file runs on a State based system, transitioning between `STATE_START`, `STATE_IN_DUNGEON`, or `STATE_BOSS_FIGHT`. Allows for clarity when developing.
+* **Collections:** We used lists and shuffling (`Collections.shuffle`) to make sure every dungeon run was unique and randomized.
+* **Unit Testing (JUnit):** We wrote separate tests to prove the damage and answer-checking math was always right.
 
 ## 3. Challenges & Solutions
 
-| Challenge | Impact on MVP Development | Solution Implemented |
+
+* **The Content Problem (Running Out of Questions):** We realized we needed many more questions than just the 3-room count, especially since wrong answers consume a question but don't defeat the enemy.
+    * **Solution:** We dramatically **over-provisioned** the question list (`buildRun()` loop set to 100) and used a "recycling" method (modulo operator) to ensure we never ran out of content.
+* **The OOP Access:** Our subclasses couldn't "see" variables in the master `Questions` class, causing errors.
+    * **Solution:** We changed the variable access from `private` to `protected` in the master class, fixing the inheritance issue cleanly.
+* **Difficulty Scaling:** Jumps from Easy to Medium were sudden and confusing for the player.
+    * **Solution:** We added explicit constant checks (using `DIFFICULTY_MEDIUM`) in the script and inserted "Setup Wizard" dialogue to formally announce the difficulty change.
+* **AI Help (Citation Note):** We used AI tools (like ChatGPT) to **format** the large pool of raw questions quickly into the correct `MultipleChoice` constructor format and to help **debug** tricky parts of the game logic.
+
+## 4. Timeline & Collaboration
+
+
+| Week | What We Focused On | Team Process |
 | :--- | :--- | :--- |
-| **Inconsistent Naming** | Frequent `Type Mismatch` errors across `Game.java` and `Dungeon.java` due to mixing `Question` (singular) and `Questions` (plural) references. | Global search-and-replace to enforce consistency, ultimately using the plural `Questions` as the base class to match `Dungeon.java` list declarations. |
-| **Variable Question Consumption** | The initial `Dungeon` design prepared a fixed number of questions, which was insufficient because incorrect answers consume a question but do not defeat the enemy. | **Over-Provisioning:** The `buildRun()` loop size was increased to `100` with wrap-around logic (`i % size`). This ensures the game never runs out of content before the player is defeated or victorious. |
-| **Access Modifiers (Visibility)** | `The field Question.correctAnswer is not visible` error in `MultipleChoice.java`. The subclass could not access inherited fields. | Changed access modifiers in `Questions.java` from `private` to `protected` for core fields (`correctAnswer`, `questionText`), enabling safe inheritance. |
-| **Difficulty Logic & Progression** | Difficulty logic was confusing, especially advancing from Medium to Hard. | Implemented explicit conditional checks using constants (`if (currentDifficulty == DIFFICULTY_MEDIUM)`) in `handleGameState()` for clean, traceable progression. |
+| **Week 1** | Core Structure & Combat Loop | Established GitHub, built all main classes (`Player`, `Questions`), and got the basic room-to-room combat running. |
+| **Week 2** | Polish, Content & Testing | Finished `Dungeon` content management, finalized `Boss`/`Enemy` combat mechanics, created the full JUnit test, and polished the user experience (like adding the correct answer feedback). |
 
-## 4. Project Timeline
+## 5. Viability Testing
 
-The project followed the two-week schedule outlined in the proposal, with minor adjustments to dedicate more time to debugging the OOP structure.
 
-| Week | Planned Activities | Actual Accomplishments |
-| :--- | :--- | :--- |
-| **Week 1** | Start GitHub Repo + test GUI; Start Coding (x2) | Established core OOP structure (`Questions`, `MultipleChoice`, `Player`). Implemented `Game.java` loop and states. Completed initial question loading and combat simulation (MVP core). |
-| **Week 2** | Finish GUI, connect code, testing; Coding + Testing (x2) | Fully implemented `Dungeon` content management (shuffling, run building). Developed `Boss` and `Enemy` classes. Completed `GameTest.java` (JUnit). Polished game flow, story progression, and feedback (displaying correct answer on error). |
+* **User Feedback:** Testers said the game was fun, but getting an answer wrong felt unfair because they didn't learn anything.
+* **The Solution:** We immediately updated the code to **display the correct answer** when the player makes a mistake. This turned punishment into an educational moment.
+* **Proof:** The successful completion of the JUnit test suite validates that our core combat and question systems are robust and ready for scaling.
 
-## 5. How We Collaborated
+## 6. Scalability Roadmap
 
-The team employed a structured collaboration model:
 
-* **Version Control:** GitHub was the single source of truth for the codebase, facilitating parallel development and merging changes from all team members.
-* **Role Specialization:** Development was split by class responsibility (Lead Dev handled structure; Tester focused on `GameTest.java` and validation).
-* **Daily Sync-ups:** Short, informal meetings (digital) were held to identify the daily coding goal, flag structural errors, and ensure all changes merged cleanly into the main branch.
-* **Testing-Driven Debugging:** The Tester (Rachel) created Unit Tests before the full game was complete, allowing the Lead Dev and Primary Role to catch errors related to polymorphism and combat math immediately, rather than waiting for a full game run.
+* **Phase 2 (0-6 Months):** Focus on reaching 1,000 users, adding GUI/Art, and integrating the planned ad system.
+* **Phase 3 (7-12 Months):** Expand to 10,000 users, implement quality-of-life features like a **Save System** and more advanced content packs (DLCs).
+* **Long-Term:** Release a fully polished Mobile/PC edition with story branching, expanded Java topics, and monetization through paid editions and content packs.
 
-## 6. Viability Testing (New Section)
+## 7. Sources
 
-Viability testing validated the *fun* and *educational* claims of the MVP.
-
-| Aspect | Validation Process and Findings | Changes Made |
-| :--- | :--- | :--- |
-| **Educational Feedback** | User testers (CS peers) noted that the game was too unforgiving when an answer was wrong. | **Change:** Modified `Game.java` in both `processRoom()` and `bossFight()` to explicitly display the correct answer immediately after an incorrect input (e.g., "Incorrect! The answer was: [blank]"). |
-| **Fun/Engagement** | Testers found the difficulty increase too sudden and lacked clear feedback. | **Change:** Added explicit text using the Setup Wizard character in `handleGameState()` to announce the transition to Medium and Hard difficulty levels, making the progression feel earned. |
-| **Usability/Clarity** | Early testing revealed confusion over which questions related to the options displayed. | **Change:** Introduced the `selectMCQuestion()` helper method in `Game.java` and ensured question text and options were displayed together clearly. |
-| **Proof of Viability** | The successful execution of the full `GameTest.java` suite (especially the `testMultipleChoiceCheckAnswerByNumber` and `testDungeonBossQuestions` tests) serves as **proof** that the core features promised in the MVP (basic level, question system, and combat mechanics) are fully implemented and functional, supporting the project's viability claims. | N/A |
-
-## 7. Citations & External Resources (REQUIRED)
-
-All references used for design, research, and coding assistance:
-
-* Game-based Learning Market Size, Share, Growth, Latest Trends.
-* Verified Market Research. Online coding learning platform market size, scope and forecast (Report No. 449196).
-* Hanson, M. College enrollment & student demographic statistics.
-* **Stack Overflow / Tutorials:** Referenced for troubleshooting `Scanner` input validation, parsing string to integer (`NumberFormatException`), and implementing the `instanceof` operator for downcasting polymorphic objects.
-* **AI Models (Claude/ChatGPT):** Used to efficiently generate and verify the volume of Java-specific questions for the `Dungeon.loadQuestions()` method.
+* **Educational Research:** Market reports confirm the programming language learning market is expected to nearly double by 2035 and validate our target student market.
+* **Technical References:** Code structure (e.g., constants for the **Finite State Machine**) was implemented using established software development patterns.
+* **AI Tools:** Used to quickly format data into our `MultipleChoice` constructor and to assist with debugging complex code segments.
 
 ## 8. Reflections & Lessons Learned
 
-| Reflection Area | Lesson Learned | Growth Achieved |
-| :--- | :--- | :--- |
-| **OOP Design** | The initial choice of a base class name (`Question` vs. `Questions`) has downstream effects across the entire project, leading to cascading errors (`Type Mismatch`). | **Discipline:** Learned to enforce strict naming conventions and define the core abstract classes early to prevent structural ambiguity. |
-| **Project Planning** | Estimating the time required for non-trivial tasks (like debugging polymorphism and fixing inconsistent class access) is harder than estimating code volume. | **Mitigation:** Built in buffer time for "critical bug fixing" beyond the initial coding estimates. |
-| **Testing** | Unit testing is indispensable, particularly in games with complex internal math (Enemy HP, damage calculation, complex answer checking). | **Quality:** The JUnit tests in `GameTest.java` became the primary driver for identifying and fixing most logic errors before they affected the main game loop. |
-| **Game Design** | Player feedback in an educational game must be immediate and corrective. Simply punishing a wrong answer is insufficient. | **Product Enhancement:** The final addition of showing the correct answer after a mistake transformed the game from a punitive quiz into a genuine learning tool. |
 
- GUI; Start Coding (x2) | Established core OOP structure (`Questions`, `MultipleChoice`, `Player`). Implemented `Game.java` loop and states. Completed initial question loading and combat simulation (MVP core). |
-| **Week
+| Reflection Area | The Big Takeaway | The Growth Moment |
+| :--- | :--- | :--- |
+| **OOP Design** | The initial choice of a base class name was critical—a simple error there cascaded through the entire project. | **Discipline:** Learned to enforce strict naming conventions and define the core abstract classes early to prevent structural ambiguity. |
+| **Project Planning** | Estimating the time required for tricky logic (polymorphism, bug fixing) is harder than estimating simple feature coding. | **Mitigation:** Learned to build in significant buffer time for "critical bug fixing" beyond the initial coding estimates. |
+| **Testing** | Unit testing is indispensable, especially in games where one math error can break the whole combat system. | **Quality:** The JUnit tests became the primary driver for identifying and fixing most logic errors before they ever affected the main game loop. |
+| **Game Design** | Player feedback in an educational game must be immediate. | **Product Enhancement:** The final addition of showing the correct answer after a mistake transformed the game from a punitive quiz into a genuine learning tool. |
